@@ -62,9 +62,8 @@ __fake_net_common() {
 
         # 如果没有预设命令，进入交互模式
         if [[ "$has_preset" -eq 0 ]]; then
-            echo "[WARN] 序号 $fake_net_call_count 未设置预设命令" >&2
-            echo "" >&2
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" >&2
+            echo "[WARN] 序号 $fake_net_call_count 未设置预设命令" >&2
             echo "请根据 curl/wget的原始命令及参数 进行操作：" >&2
             echo " - 如需保存文件：请手动上传文件到目标位置，然后输入空行继续" >&2
             echo ' - 如需输出到stdout：请输入替代命令（如: echo "something" 或 cat /path/file）' >&2
@@ -85,6 +84,7 @@ __fake_net_common() {
                     user_input="command $user_input"
                 fi
                 eval "$user_input"
+                echo >&2                
             fi
         fi
 
