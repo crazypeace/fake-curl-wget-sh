@@ -35,11 +35,17 @@ LOCK_FILE="${COUNT_FILE}.lock"
     
     # 根据调用序号执行预设命令
     case "$fake_net_call_count" in
-#           1)
-#               # 示例：第1次调用的预设命令
-#               # echo "preset response for call 1"
-#               has_preset=1
-#               ;;
+#       示例：序号 #1 对应的预设替代命令
+#       1)
+#           # echo "something"
+#           # cat /path/file
+#           # cp /path/source /path/dest
+#           # 用 real-curl 的方式来使用系统本身的真实的 curl
+#           # real-curl xxxx
+#           # 用 real-wget 的方式来使用系统本身的真实的 wget
+#           # real-wget xxxx
+#           has_preset=1
+#           ;;
         *)
             # 未设置预设命令
             echo "[DEBUG] 未设置预设命令" >&2
@@ -49,15 +55,15 @@ LOCK_FILE="${COUNT_FILE}.lock"
 
     echo >&2
 
-    # 如果没有预设命令，进入交互模式
-    if [[ "$has_preset" -eq 0 ]]; then
-        echo "[WARN] 序号 $fake_net_call_count 未设置预设命令" >&2
-        echo "" >&2
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" >&2
+    if [[ "$has_preset" -eq 1 ]]; then
+        echo "[INFO] 已执行预设命令" >&2
+        echo >&2
+    else
+        # 如果没有预设命令，进入交互模式
+        echo "[WARN] 序号 # $fake_net_call_count 未设置预设命令" >&2
         echo "请根据 curl/wget的原始命令及参数 进行操作：" >&2
         echo " - 如需保存文件：请手动上传文件到目标位置，然后输入空行继续" >&2
         echo ' - 如需输出到stdout：请输入替代命令（如: echo "something" 或 cat /path/file）' >&2
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" >&2
         echo "[INPUT] 请输入替代命令（或按回车表示文件已上传）: " >&2
 
         # 读取用户输入
@@ -68,14 +74,12 @@ LOCK_FILE="${COUNT_FILE}.lock"
 
         # 用户输入非空行, 则视为替代命令，执行它
         if [[ -n "$user_input" ]]; then
-            # 临时移除fake路径,使用真实的curl/wget
-            export PATH=$(echo "$PATH" | sed 's|^\(/tmp/fakebin:\)\+||')
-            
+            # 如果命令以 curl 或 wget 开头，在前面添加 real-
+                if [[ "$user_input" =~ ^(curl|wget)[[:space:]] ]]; then
+                    user_input="real-${user_input}"
+                fi
             eval "$user_input"
             echo >&2
-            
-            # 恢复PATH 加入fake路径
-            export PATH="/tmp/fakebin:$PATH"
         fi
     fi
 
