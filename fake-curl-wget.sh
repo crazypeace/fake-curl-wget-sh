@@ -84,7 +84,7 @@ __fake_net_common() {
                     user_input="command $user_input"
                 fi
                 eval "$user_input"
-                echo >&2                
+                echo >&2
             fi
         fi
 
