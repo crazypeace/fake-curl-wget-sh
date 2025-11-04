@@ -13,3 +13,8 @@ https://zelikk.blogspot.com/2025/11/dd-2.html
 # 没有预设命令 脚本暂停 使用者进行替代操作
 https://zelikk.blogspot.com/2025/11/fake-curl-wget-sh.html
 
+# v2 使用方法
+```
+source fake-curl-wget-v2.sh
+执行你的脚本
+```
