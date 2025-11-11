@@ -5,7 +5,7 @@ fake-curl-wget.sh 用于解决VPS向外访问网络有问题, 导致脚本执行
 ```
 # 把 fake-curl-wget.sh 弄到你的VPS上
 source fake-curl-wget.sh
-# 执行你的脚本
+执行你的脚本
 ```
 
 # 针对调用序号 预设替代命令
@@ -16,6 +16,7 @@ https://zelikk.blogspot.com/2025/11/fake-curl-wget-sh.html
 
 # v2 使用方法
 ```
+# 把 __fake_net_common.sh 和 source fake-curl-wget-v2.sh 弄到你的VPS上
 source fake-curl-wget-v2.sh
 执行你的脚本
 ```
