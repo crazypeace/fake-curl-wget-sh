@@ -53,37 +53,37 @@ LOCK_FILE="${COUNT_FILE}.lock"
     esac
 
     # 如果根据序号没有预设命令
-    if [[ "$has_preset" -eq 0 ]]; then
+#   if [[ "$has_preset" -eq 0 ]]; then
         # 尝试根据参数内容执行预设命令
         # https://zelikk.blogspot.com/2025/11/fake-curl-wget-sh-v2-3.html
 #       if printf '%s\n' "$@" | grep -qE '^http.*code\.zip$'; then
-#           # 有参数是 http开头 code.zip结尾
-#           cp /root/code.zip "$8"
-#           has_preset=1
+#            # 有参数是 http开头 code.zip结尾
+#            cp /root/code.zip "$8"
+#            has_preset=1
 #       elif printf '%s\n' "$@" | grep -qE '^http.*[Xx]ray-linux-64\.zip$'; then
-#           # 有参数是 http开头 xray-linux-64.zip或Xray-linux-64.zip结尾  
-#           cp /root/xray-linux-64.zip "$8"
-#           has_preset=1
+#            # 有参数是 http开头 xray-linux-64.zip或Xray-linux-64.zip结尾  
+#            cp /root/xray-linux-64.zip "$8"
+#            has_preset=1
 #       elif printf '%s\n' "$@" | grep -qE '^http.*jq-linux-amd64$'; then
-#           # 有参数是 http开头 jq-linux-amd64结尾
-#           cp /root/jq-linux-amd64 "$8"
-#           has_preset=1
+#            # 有参数是 http开头 jq-linux-amd64结尾
+#            cp /root/jq-linux-amd64 "$8"
+#            has_preset=1
 #       elif printf '%s\n' "$@" | grep -qF 'one.one.one.one'; then
-#           # 有参数是 包含one.one.one.one
-#           # 将 one.one.one.one 替换为 www.qualcomm.cn
-#           new_args=()
-#           for arg in "$@"; do
-#               new_args+=("${arg//one.one.one.one/www.qualcomm.cn}")
-#           done
-#           # 如果命令是 curl 或 wget，在前面添加 real-
-#           if [[ "$cmd" == "curl" || "$cmd" == "wget" ]]; then
-#               eval "real-${cmd}" "${new_args[@]}"
-#           else
-#               eval "$cmd" "${new_args[@]}"
-#           fi
-#           has_preset=1
+#            # 有参数是 包含one.one.one.one
+#            # 将 one.one.one.one 替换为 www.qualcomm.cn
+#            new_args=()
+#            for arg in "$@"; do
+#                new_args+=("${arg//one.one.one.one/www.qualcomm.cn}")
+#            done
+#            # 如果命令是 curl 或 wget，在前面添加 real-
+#            if [[ "$cmd" == "curl" || "$cmd" == "wget" ]]; then
+#                eval "real-${cmd}" "${new_args[@]}"
+#            else
+#                eval "$cmd" "${new_args[@]}"
+#            fi
+#            has_preset=1
 #       fi
-    fi
+#   fi
     
     echo >&2
 
