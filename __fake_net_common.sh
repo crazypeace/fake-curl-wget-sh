@@ -97,7 +97,7 @@ LOCK_FILE="${COUNT_FILE}.lock"
         echo >&2
         echo "[WARN] 序号 # $fake_net_call_count 未设置预设命令" >&2
         echo "请根据 curl/wget的原始命令及参数 进行操作：" >&2
-        echo " - 如需保存文件：请手动上传文件到目标位置，然后输入空行继续; 也可以手动将文件上传, 然后输入替代命令 (如: cp /uploaded/file /path/file )" >&2
+        echo " - 如需保存文件：请手动上传文件到目标位置，然后输入空行继续；也可以手动将文件上传，然后输入替代命令（如：cp /uploaded/file /path/file）" >&2
         echo ' - 如需输出到stdout：请输入替代命令（如: echo "something" 或 cat /path/file）' >&2
         echo "[INPUT] 请输入替代命令（或按回车表示文件已上传）: " >&2
 
